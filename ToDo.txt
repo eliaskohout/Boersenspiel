@@ -1,0 +1,42 @@
+Klassen: Spieler, UI, Marketstack
+
+
+Spieler: ---------------------------------------------------------------------------------------------------------------
+
+    Attribute:
+    - [x] Guthaben
+    - [ ] Gekaufte Wertpapiere (mit u.a. Kaufpreis und Kaufdatum)
+    - [x] Name
+
+    Methoden:
+    - [ ] Guthaben hinzufügen
+    - [ ] Wertpapiere kaufen
+    - [ ] Wertpapiere verkaufen
+
+
+UI (Frontend): ---------------------------------------------------------------------------------------------------------
+
+    Attribute:
+
+    Methoden:
+    - [ ] Leeren der Konsole
+    - [ ] Aufzeichnen des Inputs
+    - [ ] Ausgeben eines Graphen
+    - [ ] Hauptmenü
+    - [ ] Auflistung vom Portfolio
+    - [ ] Kauf-Dialog
+    - [ ] Auflistung der kaufbaren Wertpapiere & Co
+
+
+Marketstack: -----------------------------------------------------------------------------------------------------------
+
+    Attribute:
+    - [x] API-Key
+    - [x] Onlinestatus
+    - [ ] Bereits abgefragte Daten (da die Abfragen auf 1000 pro Monat begrenzt sind)
+
+    Methoden:
+    - [x] Teste ob eine Verbindung zu marketstack.com besteht
+    - [x] Ping
+    - [x] Abfragen der End of Day Daten
+    - [x] Abfragen der End of Day Daten nach Datum
