@@ -5,11 +5,12 @@ Spieler: -----------------------------------------------------------------------
 
     Attribute:
     - [x] Guthaben
+    - [x] Kaufhistorie
     - [ ] Gekaufte Wertpapiere (mit u.a. Kaufpreis und Kaufdatum)
     - [x] Name
 
     Methoden:
-    - [ ] Guthaben hinzufügen
+    - [x] Guthaben hinzufügen
     - [ ] Wertpapiere kaufen
     - [ ] Wertpapiere verkaufen
 
