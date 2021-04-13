@@ -40,7 +40,7 @@ class MARKETSTACK:
             'limit': limit,                 # Definiert die Anzahl an Tagen bzw. Einträgen (max. 1000)
             'offset': offset                # Definiert eine Verschiebung des ersten Abgefragten Tages in Tagen
         }
-        api_ergebnis = requests.get('http://api.marketstack.com/v1/tickers/aapl/eod', parameter)  # HTTP GET Request
+        api_ergebnis = requests.get('http://api.marketstack.com/v1/eod', parameter)  # HTTP GET Request
         return api_ergebnis.json()
 
     def getEODbyDate(self, ticker: str, date_from: str, date_to: str) -> dict:  # Abfrage der End-of-Day Daten
@@ -50,5 +50,6 @@ class MARKETSTACK:
             'date_from': date_from,         # "Von"-Datum: "YYYY-MM-DD" oder im ISO-8601 Datum Format (bis zu 30 Jahre)
             'date_to': date_to              # "Bis"-Datum: "YYYY-MM-DD" oder im ISO-8601 Datum Format
         }
-        api_ergebnis = requests.get('http://api.marketstack.com/v1/tickers/aapl/eod', parameter)  # HTTP GET Request
+        api_ergebnis = requests.get('http://api.marketstack.com/v1/eod', parameter)  # HTTP GET Request
         return api_ergebnis.json()
+

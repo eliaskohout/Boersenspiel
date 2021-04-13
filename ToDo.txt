@@ -20,7 +20,6 @@ UI (Frontend): -----------------------------------------------------------------
     Attribute:
 
     Methoden:
-    - [ ] Leeren der Konsole
     - [ ] Aufzeichnen des Inputs
     - [ ] Ausgeben eines Graphen
     - [ ] Hauptmenü
