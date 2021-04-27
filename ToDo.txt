@@ -1,4 +1,4 @@
-Klassen: Spieler, UI, Marketstack
+Klassen: Spieler, Marketstack
 
 
 Spieler: ---------------------------------------------------------------------------------------------------------------
@@ -20,7 +20,6 @@ UI (Frontend): -----------------------------------------------------------------
     Attribute:
 
     Methoden:
-    - [ ] Aufzeichnen des Inputs
     - [ ] Ausgeben eines Graphen
     - [ ] Hauptmenü
     - [ ] Auflistung vom Portfolio
