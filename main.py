@@ -2,8 +2,8 @@
 main.py -> Die main Funktion des Börsenspiels.
 """
 
-import source.SPIELER as S
-import source.MARKETSTACK as M
+import src.SPIELER as S
+import src.MARKETSTACK as M
 
 from ui.main_window import Ui_Form
 
