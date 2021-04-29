@@ -25,11 +25,11 @@ class MainWindow(qtw.QWidget):
         self.ui.setupUi(self)
 
         # Hier können die Methoden mit den Widgets verbunden werden
-        self.ui.pushButton.clicked.connect(self.drucke)
+        #self.ui.pushButton.clicked.connect(self.drucke)
 
     # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
-    def drucke(self):
-        print(self.ui.textEdit.toPlainText())
+    #def drucke(self):
+    #    print(self.ui.textEdit.toPlainText())
 
 
 if __name__ == "__main__":
