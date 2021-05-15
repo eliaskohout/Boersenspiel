@@ -3,7 +3,7 @@ main.py -> Die main Funktion des Börsenspiels.
 """
 
 import src.SPIELER as S
-import src.MARKETSTACK as M
+import src.DATEN as D
 
 from ui.main_window import Ui_Form
 
@@ -13,8 +13,7 @@ from PyQt5 import QtCore as qtc
 
 def main():
     spieler = S.SPIELER('Bob')
-    api = M.MARKETSTACK()
-
+    daten = D.DATEN()
 
 class MainWindow(qtw.QWidget):
 

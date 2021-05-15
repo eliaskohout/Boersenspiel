@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>909</width>
-    <height>558</height>
+    <width>1018</width>
+    <height>647</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -41,7 +41,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_home">
       <attribute name="title">
@@ -49,18 +49,18 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="1" column="0">
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
-          <string>Depot</string>
+          <string>Historie</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3"/>
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string>Kapital</string>
+          <string>Depotübersicht</string>
          </property>
+         <layout class="QGridLayout" name="gridLayout_3"/>
         </widget>
        </item>
       </layout>
@@ -76,7 +76,7 @@
        <bool>false</bool>
       </property>
       <attribute name="title">
-       <string>Aktien</string>
+       <string>Investieren</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <property name="leftMargin">
