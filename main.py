@@ -13,22 +13,30 @@ from PyQt5 import QtCore as qtc
 
 def main():
     spieler = S.SPIELER('Bob')
-    daten = D.DATEN()
 
 class MainWindow(qtw.QWidget):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.daten = D.DATEN()
+        self.daten.tickerErneuern()
+        self.daten.tickers.saveToFile()
+
         self.ui = Ui_Form()
         self.ui.setupUi(self)
 
         # Hier können die Methoden mit den Widgets verbunden werden
-        #self.ui.pushButton.clicked.connect(self.drucke)
+
+        self.ui.pushButton_aktiensuche.clicked.connect(self.suche)
 
     # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
-    #def drucke(self):
-    #    print(self.ui.textEdit.toPlainText())
+
+    def suche(self):
+        self.ui.listWidget_suchergebnis.clear()
+        phrase = self.ui.plainTextEdit_aktiensuche.toPlainText()
+        liste = ["{} ({})".format(e[0], e[1]) for e in self.daten.tickers.inhaltSuchen(phrase)]
+        self.ui.listWidget_suchergebnis.addItems(liste)
 
 
 if __name__ == "__main__":

@@ -197,34 +197,18 @@
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton_aktiensuche</sender>
-   <signal>clicked()</signal>
-   <receiver>listWidget_suchergebnis</receiver>
-   <slot>reset()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>820</x>
-     <y>60</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>807</x>
-     <y>126</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>plainTextEdit_aktiensuche</sender>
    <signal>textChanged()</signal>
    <receiver>pushButton_aktiensuche</receiver>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>521</x>
-     <y>54</y>
+     <x>671</x>
+     <y>59</y>
     </hint>
     <hint type="destinationlabel">
-     <x>792</x>
-     <y>56</y>
+     <x>836</x>
+     <y>59</y>
     </hint>
    </hints>
   </connection>

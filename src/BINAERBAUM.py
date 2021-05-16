@@ -8,9 +8,20 @@ class BINAERBAUM:
     """ Eine KLasse, die als 'Stativ' für den Baum dient, von hier wird der Baum organisiert.
 
     Attribute:
-        -
+        - wurzel: Der Ursprung des Binärbaums
+        - name: Name des Binärbaums, für das abspeichern wichtig
     Methoden:
-        -
+        - __init__
+        - sortiertEinfuegen
+        - removeItem
+        - inOrderAusgeben
+        - bauBaumAusListe
+        - gibBaumAusListe
+        - inhaltSuchen
+        - gibAnzahlElemente
+        - balanceTree
+        - saveToFile
+        - buildFromFile
 
     """
     def __init__( self, name ):
@@ -23,7 +34,8 @@ class BINAERBAUM:
         self.wurzel = self.wurzel.sortiertEinfuegen(inhalt)
 
     def removeItem( self, inhalt ):
-        pass
+        liste = self.inOrderAusgeben().remove(inhalt)
+        bauBaumAusListe(liste)
 
     def inOrderAusgeben( self ) -> list:
         """ Gibt alle Element des Baums als Liste in order aus."""
@@ -69,7 +81,7 @@ class BINAERBAUM:
 
     def balanceTree( self ):
         """ Sorgt dafür, dass der Baum ausgeglichen ist. """
-        pass
+        self.bauBaumAusListe(self.inOrderAusgeben())
 
     def saveToFile( self ):
         """Schreibt den Inhalt des Baums in eine Datei. Die Dateiendung (.binbaum) wird automatisch angefügt."""
@@ -78,7 +90,7 @@ class BINAERBAUM:
                 zeile = ''
                 for j in i:
                     zeile += j + ";"
-                zeile[:-1] += '\n'
+                zeile = zeile[:-1] + '\n'
                 file_obj.write(zeile)
 
     def buildFromFile( self, name =None ):

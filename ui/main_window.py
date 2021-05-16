@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\main_window.ui'
+# Form implementation generated from reading ui file 'main_window.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(909, 558)
+        Form.resize(1018, 647)
         Form.setMaximumSize(QtCore.QSize(16777215, 16777215))
         Form.setAutoFillBackground(False)
         self.gridLayout = QtWidgets.QGridLayout(Form)
@@ -27,14 +27,14 @@ class Ui_Form(object):
         self.tab_home.setObjectName("tab_home")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.tab_home)
         self.gridLayout_4.setObjectName("gridLayout_4")
+        self.groupBox_2 = QtWidgets.QGroupBox(self.tab_home)
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.gridLayout_4.addWidget(self.groupBox_2, 1, 0, 1, 1)
         self.groupBox = QtWidgets.QGroupBox(self.tab_home)
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox)
         self.gridLayout_3.setObjectName("gridLayout_3")
-        self.gridLayout_4.addWidget(self.groupBox, 1, 0, 1, 1)
-        self.groupBox_2 = QtWidgets.QGroupBox(self.tab_home)
-        self.groupBox_2.setObjectName("groupBox_2")
-        self.gridLayout_4.addWidget(self.groupBox_2, 0, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.groupBox, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_home, "")
         self.tab_aktien = QtWidgets.QWidget()
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -91,18 +91,17 @@ class Ui_Form(object):
         self.gridLayout.addWidget(self.tabWidget, 1, 0, 1, 1)
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(0)
-        self.pushButton_aktiensuche.clicked.connect(self.listWidget_suchergebnis.reset)
+        self.tabWidget.setCurrentIndex(1)
         self.plainTextEdit_aktiensuche.textChanged.connect(self.pushButton_aktiensuche.click)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Börsenspiel"))
-        self.groupBox.setTitle(_translate("Form", "Depot"))
-        self.groupBox_2.setTitle(_translate("Form", "Kapital"))
+        self.groupBox_2.setTitle(_translate("Form", "Historie"))
+        self.groupBox.setTitle(_translate("Form", "Depotübersicht"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_home), _translate("Form", "Portfolio"))
         self.plainTextEdit_aktiensuche.setPlaceholderText(_translate("Form", "Suche nach Aktien..."))
         self.pushButton_aktiensuche.setText(_translate("Form", "Suche"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_aktien), _translate("Form", "Aktien"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_aktien), _translate("Form", "Investieren"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_einstellungen), _translate("Form", "Einstellungen"))
