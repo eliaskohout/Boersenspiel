@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1018</width>
-    <height>647</height>
+    <width>935</width>
+    <height>556</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -35,28 +35,43 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <item row="1" column="0">
+   <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="tabPosition">
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="tab_home">
+     <property name="usesScrollButtons">
+      <bool>true</bool>
+     </property>
+     <property name="documentMode">
+      <bool>false</bool>
+     </property>
+     <property name="tabsClosable">
+      <bool>false</bool>
+     </property>
+     <property name="tabBarAutoHide">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="tab_portfolio">
       <attribute name="title">
        <string>Portfolio</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="1" column="0">
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QGroupBox" name="groupBox_historie">
          <property name="title">
           <string>Historie</string>
          </property>
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="groupBox_depotuebersicht">
          <property name="title">
           <string>Depotübersicht</string>
          </property>
@@ -65,7 +80,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_aktien">
+     <widget class="QWidget" name="tab_suche">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -76,7 +91,7 @@
        <bool>false</bool>
       </property>
       <attribute name="title">
-       <string>Investieren</string>
+       <string>Suchen</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <property name="leftMargin">
@@ -189,6 +204,125 @@
       <attribute name="title">
        <string>Einstellungen</string>
       </attribute>
+     </widget>
+     <widget class="QWidget" name="tab_aktieninfo">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <attribute name="title">
+       <string>Aktieninfo</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="QTabWidget" name="tabWidget_diagramm">
+         <property name="tabPosition">
+          <enum>QTabWidget::South</enum>
+         </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="tab_1Tag">
+          <attribute name="title">
+           <string>1 Tag</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tab_1Woche">
+          <attribute name="title">
+           <string>1 Woche</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tab_1Monat">
+          <attribute name="title">
+           <string>1 Monat</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tab_6Monate">
+          <attribute name="title">
+           <string>6 Monate</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tab_1Jahr">
+          <attribute name="title">
+           <string>1 Jahr</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tab_5Jahre">
+          <attribute name="title">
+           <string>5 Jahre</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tab_Max">
+          <attribute name="title">
+           <string>Max</string>
+          </attribute>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetDefaultConstraint</enum>
+         </property>
+         <item>
+          <widget class="QSplitter" name="splitter_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <widget class="QSpinBox" name="spinBox_anzahlKaufen"/>
+           <widget class="QPushButton" name="pushButton_kaufen">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Kaufen</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSplitter" name="splitter_4">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <widget class="QSpinBox" name="spinBox_anzahlVerkaufen"/>
+           <widget class="QPushButton" name="pushButton_verkaufen">
+            <property name="text">
+             <string>Verkaufen</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_preis">
+           <property name="text">
+            <string>Preis: 123€</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
