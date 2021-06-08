@@ -25,7 +25,7 @@ class MainWindow(qtw.QWidget):
 
         self.ui = Ui_Form()
         self.ui.setupUi(self)
-
+        self.depotwertBerechnen=""
         self.ui.tabWidget.setTabVisible(3, False)
 
         # Hier können die Methoden mit den Signalen der Widgets verbunden werden
@@ -42,7 +42,7 @@ class MainWindow(qtw.QWidget):
     def verkaufenclick(self):
         self.spieler.wertpapierVerkaufen(int(str(self.ui.spinBox_anzahlVerkaufen.value())), self.aktuellerticker)
 
-    def suche( self ):
+    def suche(self ):
         self.ui.listWidget_suchergebnis.clear()
         phrase = self.ui.plainTextEdit_aktiensuche.toPlainText()
         liste = ["%s (%s)" % (e[0], e[1]) for e in self.daten.tickers.inhaltSuchen(phrase)]
@@ -64,6 +64,19 @@ class MainWindow(qtw.QWidget):
         self.ui.listWidget_gekaufteAktien.clear()
         self.ui.listWidget_gekaufteAktien.addItems(self.spieler.aktienliste)
 
+    def aktualisiereDepotwert( self ):
+        self.aktualisieren()
+        self.ui.label_depotwert.setText(self.spieler.depotwertBerechnen())
+
+    def konfiguriereAktieninfo( self, ticker: str ):
+        pass
+
+    def Gutenhaben( self ):
+        self.aktualisieren()
+        self.ui.label_guthaben.setText(self.spieler.guthaben())
+
+    def aktualisieren:
+        pass
 
 if __name__ == "__main__":
     main()

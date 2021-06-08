@@ -4,8 +4,8 @@ Klassen: Spieler, Marketstack
 Spieler: ---------------------------------------------------------------------------------------------------------------
 
     - [ ] Liste gekaufter Wertpapiere (mit u.a. Kaufpreis und Kaufdatum)
-    - [ ] Wertpapiere kaufen
-    - [ ] Wertpapiere verkaufen
+    - [ x ] Wertpapiere kaufen
+    - [ x ] Wertpapiere verkaufen
 
 
 UI (Frontend): ---------------------------------------------------------------------------------------------------------
