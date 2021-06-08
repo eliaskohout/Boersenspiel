@@ -37,7 +37,7 @@ class MainWindow(qtw.QWidget):
     def suche( self ):
         self.ui.listWidget_suchergebnis.clear()
         phrase = self.ui.plainTextEdit_aktiensuche.toPlainText()
-        liste = ["{} ({})".format(e[0], e[1]) for e in self.daten.tickers.inhaltSuchen(phrase)]
+        liste = ["%s (%s)" % (e[0], e[1]) for e in self.daten.tickers.inhaltSuchen(phrase)]
         self.ui.listWidget_suchergebnis.addItems(liste)
 
     def launchAktieninfo( self, qListItem ):
