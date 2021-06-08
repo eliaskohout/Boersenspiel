@@ -39,9 +39,11 @@ class MainWindow(qtw.QWidget):
     # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
     def kaufenclick(self):
         self.spieler.wertpapierKaufen(int(str(self.ui.spinBox_anzahlKaufen.value())), self.aktuellerticker)
+
     def verkaufenclick(self):
         self.spieler.wertpapierVerkaufen(int(str(self.ui.spinBox_anzahlVerkaufen.value())), self.aktuellerticker)
-    def suche( self ):
+
+    def suche(self ):
         self.ui.listWidget_suchergebnis.clear()
         phrase = self.ui.plainTextEdit_aktiensuche.toPlainText()
         liste = ["%s (%s)" % (e[0], e[1]) for e in self.daten.tickers.inhaltSuchen(phrase)]
@@ -60,6 +62,9 @@ class MainWindow(qtw.QWidget):
     def konfiguriereAktieninfo( self, ticker: str ):
         pass
 
+    def Gutenhaben( self ):
+      self.aktualisieruen()
+      self.ui.label_guthaben.setText(self.spieler.guthaben())
 
 if __name__ == "__main__":
     main()
