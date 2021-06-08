@@ -85,7 +85,7 @@ class BINAERBAUM:
 
     def saveToFile( self ):
         """Schreibt den Inhalt des Baums in eine Datei. Die Dateiendung (.binbaum) wird automatisch angefügt."""
-        with open("./data/{}.binbaum".format(self.name), 'w+') as file_obj:
+        with open("./data/{}.binbaum".format(self.name), 'w+', encoding="utf8") as file_obj:
             for i in self.inOrderAusgeben():
                 zeile = ''
                 for j in i:
@@ -100,7 +100,7 @@ class BINAERBAUM:
         pfad = "./data/{}.binbaum".format(name)
         if os.path.exists(pfad):
             liste = []
-            with open(pfad , 'r') as file_obj:
+            with open(pfad , 'r', encoding="utf8") as file_obj:
                 for zeile_string in file_obj:
                     elemente = zeile_string.strip().split(';')
                     liste += [elemente]

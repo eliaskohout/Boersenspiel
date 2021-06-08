@@ -5187,7 +5187,6 @@ X Financial;XYF
 X ESG MSCI Japan ETF 1C;XZMJ.XFRA
 X DBMSCIUSA;3020-OL.XHKG
 X DBMSCIINDO;3099-OL.XHKG
-Wästbygg Gruppen AB (publ);WBGR-B.XSTO
 Wynn Resorts Ltd;WYNN
 Wynn Macau, Limited;8WY.XFRA
 Wynn Macau Ltd;WYNMY
@@ -6643,6 +6642,7 @@ Wah Fu Education Group Ltd;WAFU
 Wagners Holding Company Limited;WGN.XASX
 Wagend Infra Venture Limited;WAGEND.XBOM
 Wafangdian Bearing Company Ltd;200706.XSHE
+Waestbygg Gruppen AB (publ);WBGR-B.XSTO
 Waddell & Reed Financial, Inc;WDDA.XFRA
 Waddell & Reed Financial Inc - Class A;WDR
 Wacom Company;WACMY
@@ -18057,8 +18057,6 @@ Square Inc - Class A;SQ
 Square Enix Holdings Co. Ltd;SQNXF
 Square Enix Holdings Co. Ltd;SQNNY
 Square Chain Corp;SQCC
-Spängler IQAM ShortTerm EUR;FP81.XFRA
-Spängler IQAM Quality Equity Europe;FP85.XFRA
 Spyglass Resources Corp;SGLRF
 Sputnik Enterprises;SPNI
 Spruce Ridge Resources Ltd;SRCGF
@@ -18270,6 +18268,8 @@ Spanish Broadcasting System Inc - Class A;SBSAA
 Spandana Sphoorty Financial Ltd.;542759.XBOM
 SpanAmerica Medical Systems Inc;SPAN
 Span Divergent Limited;524727.XBOM
+Spaengler IQAM ShortTerm EUR;FP81.XFRA
+Spaengler IQAM Quality Equity Europe;FP85.XFRA
 Spacetalk Limited;EZY.XFRA
 Spacenet Enterprises India Limited;SPCENET.XNSE
 Spacefy Inc;YSP.XFRA
@@ -20808,10 +20808,10 @@ SciPlay Corporation;2XY.XFRA
 SciDev Limited;SDV.XASX
 SciDev Limited;INFA.XFRA
 SciClone Pharmaceuticals Inc;SCLN
-Schwälbchen Molkerei Jakob Berz AG;SMB.XFRA
 Schweiz Nationalbank;SWZNF
 Schweitzer-Mauduit International Inc;SWM
 Schweiter Technologies AG;SCWTF
+Schwaelbchen Molkerei Jakob Berz AG;SMB.XFRA
 Schwab US Long-Term U.S. Treasury ETF;SCHQ
 Schwab US Dividend Equity ETF;SCHD
 Schwab US Aggregate Bond ETF;SCHZ
@@ -21263,7 +21263,7 @@ Samkrg Pistons and Rings Limited;520075.XBOM
 Samko Timber Limited;E6R.XSES
 Samko Timber Limited;9E5.XFRA
 Samitivej Public Company Limited;SVH-R.XBKK
-Samhällsbyggnadsbolaget i Norden AB (publ);SBB-B.XSTO
+Samhaellsbyggnadsbolaget i Norden AB (publ);SBB-B.XSTO
 Samex Mining Corp;SMXMF
 Samco Gold Ltd Ord;SGCLF
 Samchem Holdings Bhd;5147.XKLS
@@ -63717,7 +63717,7 @@ GSB Group Berhad;7077.XKLS
 GSB Finance Limited;511543.XBOM
 GS7A;GS7A.XSTU
 GS(1P);078935.XKRX
-GS&P Fonds Schwellenländer;LQ7B.XFRA
+GS&P Fonds Schwellenlaender;LQ7B.XFRA
 GS YUASA CP KYOTO;GYUAF
 GS YUASA CORP.;G9Y.XFRA
 GS YUASA CORP;6674.XTKS
@@ -83999,8 +83999,8 @@ Byrna Technologies Inc;BYRND
 Byrna Technologies Inc;BYRN
 Bylog Group Corp;BYLG
 Byline Bancorp Inc;BY
-Byggmästare Anders J Ahlström Holding AB (publ);AJA-B.XSTO
 Byggmax Group AB (publ);BYY.XFRA
+Byggmaestare Anders J Ahlström Holding AB (publ);AJA-B.XSTO
 Buzzi Unicem Spa Non Conv;BZZFF
 Buzzi Unicem Spa;BZZUY
 Buzzi Unicem Spa;BZZUF
@@ -97384,8 +97384,8 @@ AB Panevezio Statybos Trestas;YK3.XSTU
 AB Klaipedos nafta;XIC.XFRA
 AB Kauno Energija;WVJ.XSTU
 AB International Group Corp;ABQQ
-AB Industrivärden (publ);INDU-C.XSTO
-AB Industrivärden (publ);INDU-A.XSTO
+AB Industrivaerden (publ);INDU-C.XSTO
+AB Industrivaerden (publ);INDU-A.XSTO
 AB INBEV;ABI.XBRU
 AB Electrolux (publ);ELUX-B.XSTO
 AB Electrolux (publ);ELUX-A.XSTO
