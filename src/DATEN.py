@@ -37,7 +37,7 @@ class DATEN:
         if von == "heute":
             von = date.today()
         daten = web.DataReader([ticker], "yahoo", start=von, end=bis)
-        return daten["Adj Close"]
+        return list(daten["Adj Close"])
 
 class MARKETSTACK:
     """ Eine Klasse, die den Zugriff auf die Marketstack-API regelt.
