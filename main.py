@@ -25,7 +25,7 @@ class MainWindow(qtw.QWidget):
 
         self.ui = Ui_Form()
         self.ui.setupUi(self)
-
+        self.depotwertBerechnen=""
         self.ui.tabWidget.setTabVisible(3, False)
 
         # Hier können die Methoden mit den Signalen der Widgets verbunden werden
@@ -58,6 +58,9 @@ class MainWindow(qtw.QWidget):
         self.ui.tabWidget.setCurrentIndex(3)
         self.konfiguriereAktieninfo(ticker)
 
+    def aktualisiereDepotwert:
+        self.aktualisieren()
+        self.ui.label_depotwert.setText(self.spieler.depotwertBerechnen())
 
     def konfiguriereAktieninfo( self, ticker: str ):
         pass
@@ -65,7 +68,7 @@ class MainWindow(qtw.QWidget):
     def Gutenhaben( self ):
       self.aktualisieren()
       self.ui.label_guthaben.setText(self.spieler.guthaben())
-
+    def aktualisieren:
 if __name__ == "__main__":
     main()
 
