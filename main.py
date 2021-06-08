@@ -58,7 +58,7 @@ class MainWindow(qtw.QWidget):
         self.ui.tabWidget.setCurrentIndex(3)
         self.konfiguriereAktieninfo(ticker)
 
-    def aktualisiereDepotwert:
+    def aktualisiereDepotwert( self ):
         self.aktualisieren()
         self.ui.label_depotwert.setText(self.spieler.depotwertBerechnen())
 
