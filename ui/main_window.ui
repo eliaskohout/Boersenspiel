@@ -75,7 +75,18 @@
          <property name="title">
           <string>Depotübersicht</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3"/>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QListWidget" name="listWidget_gekaufteAktien">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
