@@ -63,7 +63,7 @@ class MainWindow(qtw.QWidget):
         pass
 
     def Gutenhaben( self ):
-      self.aktualisieruen()
+      self.aktualisieren()
       self.ui.label_guthaben.setText(self.spieler.guthaben())
 
 if __name__ == "__main__":
