@@ -18,31 +18,48 @@ class MainWindow(qtw.QWidget):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.spieler = S.SPIELER('Bob')
+
+        self.aktuellerTicker = ""
+
         self.daten = D.DATEN()
-        self.aktuellerticker = ""
         self.daten.tickers.saveToFile()
+        self.spieler = S.SPIELER('Bob', self.daten.tickerpreisErhalten )
 
         self.ui = Ui_Form()
         self.ui.setupUi(self)
-        self.depotwertBerechnen=""
         self.ui.tabWidget.setTabVisible(3, False)
+        self.aktualisiereTabProtfolio()
 
         # Hier können die Methoden mit den Signalen der Widgets verbunden werden
 
         self.ui.pushButton_aktiensuche.clicked.connect(self.suche)
         self.ui.listWidget_suchergebnis.itemDoubleClicked.connect(self.launchAktieninfo)
+        self.ui.listWidget_gekaufteAktien.itemDoubleClicked.connect(self.launchAktieninfo)
         self.ui.pushButton_kaufen.clicked.connect(self.kaufenclick)
+        self.ui.pushButton_kaufen.clicked.connect(self.aktualisiereAktienanzahlLabel)
         self.ui.pushButton_verkaufen.clicked.connect(self.verkaufenclick)
+        self.ui.pushButton_verkaufen.clicked.connect(self.aktualisiereAktienanzahlLabel)
+        self.ui.tabWidget.currentChanged.connect(self.aktualisiereTabProtfolio)
+        self.ui.pushButton_preis.clicked.connect(self.aktualisierePreisLabel)
 
     # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
-    def kaufenclick(self):
-        self.spieler.wertpapierKaufen(int(str(self.ui.spinBox_anzahlKaufen.value())), self.aktuellerticker)
 
-    def verkaufenclick(self):
-        self.spieler.wertpapierVerkaufen(int(str(self.ui.spinBox_anzahlVerkaufen.value())), self.aktuellerticker)
+    def kaufenclick( self ):
+        self.spieler.wertpapierKaufen(int(str(self.ui.spinBox_anzahlKaufen.value())), self.aktuellerTicker)
 
-    def suche(self ):
+    def verkaufenclick( self ):
+        self.spieler.wertpapierVerkaufen(int(str(self.ui.spinBox_anzahlVerkaufen.value())), self.aktuellerTicker)
+
+    def aktualisierePreisLabel( self ):
+        tickerpreis = self.daten.tickerpreisErhalten(self.aktuellerTicker, von="heute")[0]
+        aktiensumme = self.ui.spinBox_anzahlKaufen.value() - self.ui.spinBox_anzahlVerkaufen.value()
+        tickerpreis *= aktiensumme
+        self.ui.label_preis.setText("Preis:  %3.2f €" % tickerpreis)
+
+    def aktualisiereAktienanzahlLabel( self ):
+        self.ui.label_imBesitz.setText("Im Besitz: %d" % self.spieler.aktienAnzahlErhalten(self.aktuellerTicker))
+
+    def suche( self ):
         self.ui.listWidget_suchergebnis.clear()
         phrase = self.ui.plainTextEdit_aktiensuche.toPlainText()
         liste = ["%s (%s)" % (e[0], e[1]) for e in self.daten.tickers.inhaltSuchen(phrase)]
@@ -51,7 +68,7 @@ class MainWindow(qtw.QWidget):
     def launchAktieninfo( self, qListItem ):
         label = qListItem.text()
         ticker = label.split('(')[1][:-1]
-        self.aktuellerticker = ticker
+        self.aktuellerTicker = ticker
         self.ui.tabWidget.setTabText(3, label)
         self.ui.tabWidget.setTabVisible(3, True)
         self.ui.tabWidget.setCurrentIndex(3)
@@ -60,23 +77,14 @@ class MainWindow(qtw.QWidget):
     def konfiguriereAktieninfo( self, ticker: str ):
         pass
 
-    def aktualisiereDepotliste( self ):
+    def aktualisiereTabProtfolio( self , i =0 ):
+        if i != 0: return
         self.ui.listWidget_gekaufteAktien.clear()
-        self.ui.listWidget_gekaufteAktien.addItems(self.spieler.aktienliste)
+        itemlist = ["%s (%s)" % (self.daten.aktiennameErhalten(e), e) for e in self.spieler.aktienliste]
+        self.ui.listWidget_gekaufteAktien.addItems(itemlist)
+        self.ui.label_depotwert.setText("Depotwert: %3.2f €" % self.spieler.depotwertBerechnen())
+        self.ui.label_guthaben.setText( "Guthaben:  %3.2f €" % self.spieler.guthaben)
 
-    def aktualisiereDepotwert( self ):
-        self.aktualisieren()
-        self.ui.label_depotwert.setText(self.spieler.depotwertBerechnen())
-
-    def konfiguriereAktieninfo( self, ticker: str ):
-        pass
-
-    def Gutenhaben( self ):
-        self.aktualisieren()
-        self.ui.label_guthaben.setText(self.spieler.guthaben())
-
-    def aktualisieren:
-        pass
 
 if __name__ == "__main__":
     main()

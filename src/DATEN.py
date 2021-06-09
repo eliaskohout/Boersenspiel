@@ -9,6 +9,7 @@ import platform
 import subprocess
 import pandas_datareader as web
 from datetime import date
+import random
 
 
 class DATEN:
@@ -30,14 +31,20 @@ class DATEN:
         liste = self.api.getTickerListe()
         self.tickers.bauBaumAusListe(liste)
 
-    def tickerpreisErhalten( self, ticker: str, von="1980-12-12", bis="heute"):
+    def aktiennameErhalten( self, ticker: str):
+        inhalt = self.tickers.inOrderAusgeben()
+        for e in inhalt:
+            if e[1] == ticker:
+                return str(e[0])
+
+    def tickerpreisErhalten( self, ticker: str, von="1980-12-12", bis="heute", key="Adj Close" ):
         #TODO Sichern im Cache
         if bis == "heute":
             bis = date.today()
         if von == "heute":
             von = date.today()
-        daten = web.DataReader(ticker, "yahoo", start=von, end=bis)
-        return daten
+        return web.DataReader(ticker, "yahoo", start=von, end=bis)[key]
+        #return [random.randrange(80000)/100]
 
 class MARKETSTACK:
     """ Eine Klasse, die den Zugriff auf die Marketstack-API regelt.
