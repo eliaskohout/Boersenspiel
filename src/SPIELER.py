@@ -34,7 +34,7 @@ class SPIELER:
     def wertpapierKaufen(self, anzahl: int, wertpapier: str):
         if wertpapier not in self.aktienliste:
             self.aktienliste[wertpapier] = 0
-        preis = self.tickerpreisErhalten(wertpapier, von="heute")[0]
+        preis = self.tickerpreisErhalten(wertpapier)
         if anzahl * preis > self.guthaben:
             anzahl = int(self.guthaben / preis)
         self.guthabenAendern(anzahl * (-1) * preis)
@@ -44,7 +44,7 @@ class SPIELER:
     def wertpapierVerkaufen(self, anzahl: int, wertpapier: str):
         if wertpapier not in self.aktienliste:
             return
-        preis = self.tickerpreisErhalten(wertpapier, von="heute")[0]
+        preis = self.tickerpreisErhalten(wertpapier)
         anzahl = min(anzahl, self.aktienliste[wertpapier])
         self.guthabenAendern(anzahl * preis)
         self.aktienliste[wertpapier] -= anzahl
@@ -55,5 +55,5 @@ class SPIELER:
     def depotwertBerechnen(self):
         depotwert = 0
         for i in self.aktienliste:
-            depotwert += self.aktienliste[i] * self.tickerpreisErhalten(i)[0]
+            depotwert += self.aktienliste[i] * self.tickerpreisErhalten(i)
         return depotwert

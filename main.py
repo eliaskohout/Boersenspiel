@@ -22,13 +22,15 @@ class MainWindow(qtw.QWidget):
         self.aktuellerTicker = ""
 
         self.daten = D.DATEN()
-        self.daten.tickers.saveToFile()
-        self.spieler = S.SPIELER('Bob', self.daten.tickerpreisErhalten )
+        self.spieler = S.SPIELER('Bob', self.daten.aktuellenTickerpreisErhalten )
 
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.ui.tabWidget.setTabVisible(3, False)
         self.aktualisiereTabProtfolio()
+
+        #self.daten.tickerErneuern()
+        #self.daten.tickerbaum.saveToFile()
 
         # Hier können die Methoden mit den Signalen der Widgets verbunden werden
 
@@ -51,10 +53,10 @@ class MainWindow(qtw.QWidget):
         self.spieler.wertpapierVerkaufen(int(str(self.ui.spinBox_anzahlVerkaufen.value())), self.aktuellerTicker)
 
     def aktualisierePreisLabel( self ):
-        tickerpreis = self.daten.tickerpreisErhalten(self.aktuellerTicker, von="heute")[0]
+        tickerpreis = self.daten.aktuellenTickerpreisErhalten(self.aktuellerTicker)
         aktiensumme = self.ui.spinBox_anzahlKaufen.value() - self.ui.spinBox_anzahlVerkaufen.value()
         tickerpreis *= aktiensumme
-        self.ui.label_preis.setText("Preis:  %3.2f €" % tickerpreis)
+        self.ui.label_preis.setText("%3.2f €" % tickerpreis)
 
     def aktualisiereAktienanzahlLabel( self ):
         self.ui.label_imBesitz.setText("Im Besitz: %d" % self.spieler.aktienAnzahlErhalten(self.aktuellerTicker))
@@ -62,7 +64,7 @@ class MainWindow(qtw.QWidget):
     def suche( self ):
         self.ui.listWidget_suchergebnis.clear()
         phrase = self.ui.plainTextEdit_aktiensuche.toPlainText()
-        liste = ["%s (%s)" % (e[0], e[1]) for e in self.daten.tickers.inhaltSuchen(phrase)]
+        liste = ["%s (%s)" % (e['name'], e['symbol']) for e in self.daten.tickerbaum.inhaltSuchen(phrase)]
         self.ui.listWidget_suchergebnis.addItems(liste)
 
     def launchAktieninfo( self, qListItem ):
@@ -75,7 +77,7 @@ class MainWindow(qtw.QWidget):
         self.konfiguriereAktieninfo(ticker)
 
     def konfiguriereAktieninfo( self, ticker: str ):
-        pass
+        self.ui.label_preis.setText("   €")
 
     def aktualisiereTabProtfolio( self , i =0 ):
         if i != 0: return
