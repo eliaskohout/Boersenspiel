@@ -46,7 +46,8 @@ class MainWindow(qtw.QWidget):
         self.ui.pushButton_preis.clicked.connect(self.aktualisierePreisLabel)
         self.ui.pushButton_Gebuehr.clicked.connect(self.aktualisierenOrderGebuehren)
         self.ui.pushButton_DepotGuthaben.clicked.connect(self.aktualisierenDepotguthaben)
-
+        self.ui.pushButton_save.clicked.connect(self.spieler.safe)
+        self.ui.pushButton_load.clicked.connect(self.spieler.load)
     # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
 
     def kaufenclick( self, threaded=True):
