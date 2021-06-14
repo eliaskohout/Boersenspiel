@@ -48,25 +48,29 @@ class MainWindow(qtw.QWidget):
     # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
 
     def kaufenclick( self ):
-        self.imHintergrundAusführen( self.spieler.wertpapierKaufen, (int(self.ui.spinBox_anzahlKaufen.value()), self.aktuellerTicker) )
+        self.imHintergrundAusfuehren( self.spieler.wertpapierKaufen, (int(self.ui.spinBox_anzahlKaufen.value()), self.aktuellerTicker) )
+        curserZuruecksetzen()
 
     def verkaufenclick( self ):
-        self.imHintergrundAusführen( self.spieler.wertpapierVerkaufen, (int(self.ui.spinBox_anzahlVerkaufen.value()), self.aktuellerTicker) )
+        self.imHintergrundAusfuehren( self.spieler.wertpapierVerkaufen, (int(self.ui.spinBox_anzahlVerkaufen.value()), self.aktuellerTicker) )
+        curserZuruecksetzen()
 
     def aktualisierePreisLabel( self, threaded=True ):
         if threaded:
-            self.imHintergrundAusführen( self.aktualisierePreisLabel, (False))
+            self.imHintergrundAusfuehren( self.aktualisierePreisLabel, (False))
             return
         tickerpreis = self.daten.aktuellenTickerpreisErhalten(self.aktuellerTicker)
         aktiensumme = self.ui.spinBox_anzahlKaufen.value() - self.ui.spinBox_anzahlVerkaufen.value()
         tickerpreis *= aktiensumme
         self.ui.label_preis.setText("%3.2f €" % tickerpreis)
+        curserZuruecksetzen()
 
     def aktualisiereImBesitzLabel( self, threaded=True):
         if threaded:
-            self.imHintergrundAusführen( self.aktualisiereImBesitzLabel, (False))
+            self.imHintergrundAusfuehren( self.aktualisiereImBesitzLabel, (False))
             return
         self.ui.label_imBesitz.setText("Im Besitz: %d" % self.spieler.aktienAnzahlErhalten(self.aktuellerTicker))
+        curserZuruecksetzen()
 
     def suche( self ):
         self.ui.listWidget_suchergebnis.clear()
@@ -89,18 +93,25 @@ class MainWindow(qtw.QWidget):
     def aktualisiereTabPortfolio( self , i =0, threaded=True ):
         if i != 0: return
         if threaded:
-            self.imHintergrundAusführen( self.aktualisiereTabPortfolio, (i, False) )
+            self.imHintergrundAusfuehren( self.aktualisiereTabPortfolio, (i, False) )
             return
         self.ui.listWidget_gekaufteAktien.clear()
         itemlist = ["%s (%s)" % (self.daten.aktiennameErhalten(e), e) for e in self.spieler.aktienliste]
         self.ui.listWidget_gekaufteAktien.addItems(itemlist)
         self.ui.label_depotwert.setText("Depotwert: %3.2f €" % self.spieler.depotwertBerechnen())
         self.ui.label_guthaben.setText( "Guthaben:  %3.2f €" % self.spieler.guthaben)
+        curserZuruecksetzen()
 
-    def imHintergrundAusführen( self, funktion: list, arguments: tuple):
+    def imHintergrundAusfuehren( self, funktion: list, arguments: tuple):
+        curserAufBeschaeftigt()
         x = threading.Thread(target=funktion, args=arguments)
         x.start()
 
+def curserAufBeschaeftigt():
+    app.setOverrideCursor(qtc.Qt.BusyCursor)
+
+def curserZuruecksetzen():
+    app.restoreOverrideCursor()
 
 if __name__ == "__main__":
     main()
