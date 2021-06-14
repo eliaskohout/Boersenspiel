@@ -44,6 +44,8 @@ class MainWindow(qtw.QWidget):
         self.ui.pushButton_verkaufen.clicked.connect(self.aktualisiereImBesitzLabel)
         self.ui.tabWidget.currentChanged.connect(self.aktualisiereTabPortfolio)
         self.ui.pushButton_preis.clicked.connect(self.aktualisierePreisLabel)
+        self.ui.pushButton_Gebuehr.clicked.connect(self.aktualisierenOrderGebuehren)
+        self.ui.pushButton_DepotGuthaben.clicked.connect(self.aktualisierenDepotguthaben)
 
     # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
 
@@ -115,6 +117,12 @@ class MainWindow(qtw.QWidget):
         x = threading.Thread(target=funktion, args=arguments)
         x.start()
 
+    def aktualisierenOrderGebuehren(self):
+        self.spieler.OrderGebuehren = self.ui.OrderGebuehr.value()
+
+    def aktualisierenDepotguthaben(self):
+        self.spieler.guthaben = self.ui.SpinBox_Depotguthaben.value()
+
 def curserAufBeschaeftigt():
     app.setOverrideCursor(qtc.Qt.BusyCursor)
 
@@ -131,5 +139,3 @@ if __name__ == "__main__":
 
     app.exec_()
 
-    def aktualisierenOrderGebuehren( self):
-        self.ui.spinBox_OrderGebuehr

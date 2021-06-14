@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>944</width>
-    <height>606</height>
+    <width>1332</width>
+    <height>410</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -297,13 +297,69 @@
           <item>
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>                      Euro</string>
+             <string>            Euro</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_Gebuehr">
+            <property name="text">
+             <string>Refresh</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
        </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_5">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>331</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Depotguthaben ändern:</string>
+       </property>
+       <widget class="QWidget" name="horizontalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>19</y>
+          <width>311</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QSpinBox" name="SpinBox_Depotguthaben">
+           <property name="maximum">
+            <number>100000000</number>
+           </property>
+           <property name="singleStep">
+            <number>10000</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>            Euro</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_DepotGuthaben">
+           <property name="text">
+            <string>Refresh</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </widget>
      <widget class="QWidget" name="tab_aktieninfo">

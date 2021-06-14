@@ -14,6 +14,7 @@ class SPIELER:
         self.guthabenHistorie = []
         self.guthabenAendern(startguthaben)
         self.aktienliste = {}
+        self.OrderGebuehren = 0
 
     def guthabenAendern(self, betrag: int):
         self.guthaben += betrag
@@ -37,7 +38,7 @@ class SPIELER:
         preis = self.tickerpreisErhalten(wertpapier)
         if anzahl * preis > self.guthaben:
             anzahl = int(self.guthaben / preis)
-        self.guthabenAendern(anzahl * (-1) * preis)
+        self.guthabenAendern(anzahl * (-1) * preis-self.OrderGebuehren)
         self.aktienliste[wertpapier] += anzahl
         print("%s hat %d Wertpapiere (%s) zum Stückpreis von %d € gekauft." % (self.name, anzahl, wertpapier, preis))
 
@@ -46,7 +47,7 @@ class SPIELER:
             return
         preis = self.tickerpreisErhalten(wertpapier)
         anzahl = min(anzahl, self.aktienliste[wertpapier])
-        self.guthabenAendern(anzahl * preis)
+        self.guthabenAendern(anzahl * preis-self.OrderGebuehren)
         self.aktienliste[wertpapier] -= anzahl
         if self.aktienliste[wertpapier] == 0:
             self.aktienliste.pop(wertpapier)
