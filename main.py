@@ -47,15 +47,23 @@ class MainWindow(qtw.QWidget):
 
     # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
 
-    def kaufenclick( self ):
-        self.imHintergrundAusfuehren( self.spieler.wertpapierKaufen, (int(self.ui.spinBox_anzahlKaufen.value()), self.aktuellerTicker) )
+    def kaufenclick( self, threaded=True):
+        if threaded:
+            self.imHintergrundAusfuehren( self.kaufenclick, (False) )
+            return
+        self.spieler.wertpapierKaufen(int(self.ui.spinBox_anzahlKaufen.value()), self.aktuellerTicker)
+        self.aktualisiereImBesitzLabel(threaded=False)
         curserZuruecksetzen()
 
-    def verkaufenclick( self ):
-        self.imHintergrundAusfuehren( self.spieler.wertpapierVerkaufen, (int(self.ui.spinBox_anzahlVerkaufen.value()), self.aktuellerTicker) )
+    def verkaufenclick( self, threaded=True):
+        if threaded:
+            self.imHintergrundAusfuehren( self.kaufenclick, (False) )
+            return
+        self.spieler.wertpapierVerkaufen(int(self.ui.spinBox_anzahlVerkaufen.value()), self.aktuellerTicker)
+        self.aktualisiereImBesitzLabel(threaded=False)
         curserZuruecksetzen()
 
-    def aktualisierePreisLabel( self, threaded=True ):
+    def aktualisierePreisLabel( self, threaded=True):
         if threaded:
             self.imHintergrundAusfuehren( self.aktualisierePreisLabel, (False))
             return
@@ -102,7 +110,7 @@ class MainWindow(qtw.QWidget):
         self.ui.label_guthaben.setText( "Guthaben:  %3.2f €" % self.spieler.guthaben)
         curserZuruecksetzen()
 
-    def imHintergrundAusfuehren( self, funktion: list, arguments: tuple):
+    def imHintergrundAusfuehren( self, funktion: 'funktion', arguments: tuple):
         curserAufBeschaeftigt()
         x = threading.Thread(target=funktion, args=arguments)
         x.start()
