@@ -130,3 +130,6 @@ if __name__ == "__main__":
     widget.show()
 
     app.exec_()
+
+    def aktualisierenOrderGebuehren( self):
+        self.ui.spinBox_OrderGebuehr
