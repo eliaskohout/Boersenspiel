@@ -4,6 +4,7 @@ SPIELER.py -> Ein Klasse, die Informationen und Methoden bezüglich des Spielers
 import time
 import json
 
+
 class SPIELER:
 
     def __init__(self, name: str, preisfunc: 'funktion', startguthaben=0.0):  # Konstruktor
@@ -16,7 +17,7 @@ class SPIELER:
         self.aktienliste = {}
         self.OrderGebuehren = 0
 
-    def guthabenAendern(self, betrag: int):
+    def guthabenAendern(self, betrag: float):
         self.guthaben += betrag
         self.guthabenHistorie.append({
             'Datum': time.strftime("%d %m %y"),
@@ -27,7 +28,7 @@ class SPIELER:
     def nameAendern(self, neuerName: str):
         self.name = neuerName
 
-    def aktienAnzahlErhalten( self, ticker: str):
+    def aktienAnzahlErhalten(self, ticker: str):
         if ticker not in self.aktienliste:
             return 0
         return self.aktienliste[ticker]
@@ -38,7 +39,7 @@ class SPIELER:
         preis = self.tickerpreisErhalten(wertpapier)
         if anzahl * preis > self.guthaben:
             anzahl = int(self.guthaben / preis)
-        self.guthabenAendern(anzahl * (-1) * preis-self.OrderGebuehren)
+        self.guthabenAendern(anzahl * (-1) * preis - self.OrderGebuehren)
         self.aktienliste[wertpapier] += anzahl
         print("%s hat %d Wertpapiere (%s) zum Stückpreis von %d € gekauft." % (self.name, anzahl, wertpapier, preis))
 
@@ -47,7 +48,7 @@ class SPIELER:
             return
         preis = self.tickerpreisErhalten(wertpapier)
         anzahl = min(anzahl, self.aktienliste[wertpapier])
-        self.guthabenAendern(anzahl * preis-self.OrderGebuehren)
+        self.guthabenAendern(anzahl * preis - self.OrderGebuehren)
         self.aktienliste[wertpapier] -= anzahl
         if self.aktienliste[wertpapier] == 0:
             self.aktienliste.pop(wertpapier)
