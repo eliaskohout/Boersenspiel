@@ -8,7 +8,7 @@ import requests
 import platform
 import subprocess
 import pandas_datareader as pdr
-from datetime import date
+from datetime import date, timedelta
 import random
 
 
@@ -45,6 +45,10 @@ class DATEN:
             von = date.today()
         return pdr.DataReader(ticker, "yahoo", start=von, end=bis)[key]
         #return [random.randrange(80000)/100]
+
+    def tickerpreisErhaltenInTagen( self, ticker: str, tage: int ):
+        von_Datum = date.today() - timedelta(days=tage)
+        return self.tickerpreisErhalten(ticker, von=von_Datum)
 
     def aktuellenTickerpreisErhalten( self, ticker: str):
         #TODO Von $ nach € umwandeln

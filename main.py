@@ -9,6 +9,7 @@ from ui.main_window import Ui_Form
 
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
+from PyQt5.QtGui import QPixmap
 import threading
 
 
@@ -99,6 +100,14 @@ class MainWindow(qtw.QWidget):
 
     def konfiguriereAktieninfo( self, ticker: str ):
         self.ui.label_preis.setText("   €")
+        self.daten.tickerpreisErhaltenInTagen(ticker, 7).plot().get_figure().savefig("data/charts/chart_%s_eineWoche.jpeg" % ticker)
+        self.ui.label_chart_1Woche.setPixmap(QPixmap("data/charts/chart_%s_eineWoche.jpeg" % ticker))
+        self.daten.tickerpreisErhaltenInTagen(ticker, 30).plot().get_figure().savefig("data/charts/chart_%s_einMonat.jpeg" % ticker)
+        self.ui.label_chart_1Monat.setPixmap(QPixmap("data/charts/chart_%s_eineMonat.jpeg" % ticker))
+        self.daten.tickerpreisErhaltenInTagen(ticker, 180).plot().get_figure().savefig("data/charts/chart_%s_sechsMonate.jpeg" % ticker)
+        self.ui.label_chart_6Monate.setPixmap(QPixmap("data/charts/chart_%s_sechsMonate.jpeg" % ticker))
+        self.daten.tickerpreisErhaltenInTagen(ticker, 365).plot().get_figure().savefig("data/charts/chart_%s_einJahr.jpeg" % ticker)
+        self.ui.label_chart_1Jahr.setPixmap(QPixmap("data/charts/chart_%s_einJahr.jpeg" % ticker))
 
     def aktualisiereTabPortfolio( self , i =0, threaded=True ):
         if i != 0: return
