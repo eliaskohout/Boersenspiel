@@ -2,7 +2,7 @@
 SPIELER.py -> Ein Klasse, die Informationen und Methoden bezüglich des Spielers enthält.
 """
 import time
-
+import json
 
 class SPIELER:
 
@@ -58,3 +58,14 @@ class SPIELER:
         for i in self.aktienliste:
             depotwert += self.aktienliste[i] * self.tickerpreisErhalten(i)
         return depotwert
+
+    def safe(self):
+        dict2 = self.aktienliste
+        dict2['guthaben'] = self.guthaben
+        with open("spielstand.json", "w") as outfile:
+            json.dump(dict2, outfile)
+
+    def load(self):
+        with open("spielstand.json", "r") as infile:
+            self.aktienliste = json.load(infile)
+        self.guthaben = self.aktienliste['guthaben']
