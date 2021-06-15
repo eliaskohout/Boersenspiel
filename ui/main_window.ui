@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>891</width>
-    <height>539</height>
+    <width>851</width>
+    <height>575</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -286,14 +286,14 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>10</y>
+         <x>360</x>
+         <y>140</y>
          <width>331</width>
          <height>101</height>
         </rect>
        </property>
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>100</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -309,89 +309,93 @@
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QSpinBox" name="spinBox_OrderGebuehr">
-            <property name="maximum">
-             <number>100</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_waehrung_ordergeuehren">
-            <property name="text">
-             <string>            Euro</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_refresh_Gebuehr">
-            <property name="text">
-             <string>Refresh</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QSpinBox" name="spinBox_OrderGebuehr">
+          <property name="maximum">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_waehrung_ordergebuehren">
+          <property name="text">
+           <string>            Euro</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_refresh_Gebuehr">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Refresh</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
       <widget class="QGroupBox" name="groupBox_depotguthaben_aendern">
        <property name="geometry">
         <rect>
-         <x>350</x>
-         <y>10</y>
+         <x>360</x>
+         <y>20</y>
          <width>331</width>
          <height>101</height>
         </rect>
        </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="title">
         <string>Depotguthaben ändern:</string>
        </property>
-       <widget class="QWidget" name="horizontalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>311</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QSpinBox" name="spinBox_Depotguthaben">
-           <property name="maximum">
-            <number>100000000</number>
-           </property>
-           <property name="singleStep">
-            <number>10000</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>            Euro</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_refresh_DepotGuthaben">
-           <property name="text">
-            <string>Refresh</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QSpinBox" name="spinBox_Depotguthaben">
+          <property name="maximum">
+           <number>100000000</number>
+          </property>
+          <property name="singleStep">
+           <number>10000</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_waehrung_depotguthaben_aendern">
+          <property name="text">
+           <string>            Euro</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_refresh_DepotGuthaben">
+          <property name="text">
+           <string>Refresh</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QGroupBox" name="groupBox_profile">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>120</y>
+         <y>130</y>
          <width>331</width>
          <height>201</height>
         </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
        <property name="title">
         <string>Profile</string>
@@ -426,47 +430,75 @@
       <widget class="QGroupBox" name="groupBox_waehrung">
        <property name="geometry">
         <rect>
-         <x>350</x>
-         <y>120</y>
+         <x>360</x>
+         <y>250</y>
          <width>331</width>
-         <height>91</height>
+         <height>81</height>
         </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
        <property name="title">
         <string>Währung</string>
        </property>
-       <widget class="QPlainTextEdit" name="plainTextEdit_Waehrung">
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <widget class="QPlainTextEdit" name="plainTextEdit_Waehrung">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="pushButton_refresh_waehrung">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Refresh</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>331</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Allgemeines</string>
+       </property>
+       <widget class="QPushButton" name="pushButton_ticker_aktualisieren">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>40</y>
-          <width>211</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_refresh_waehrung">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>40</y>
-          <width>80</width>
-          <height>31</height>
+          <x>20</x>
+          <y>30</y>
+          <width>121</width>
+          <height>22</height>
          </rect>
         </property>
         <property name="text">
-         <string>Refresh</string>
+         <string>Ticker aktualisieren</string>
         </property>
        </widget>
       </widget>

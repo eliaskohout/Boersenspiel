@@ -35,8 +35,6 @@ class MainWindow(qtw.QWidget):
         self.ui.plotWidget.setBackground('w')
         self.ui.plotWidget.setAntialiasing(True)
 
-        #self.daten.tickerErneuern()
-        #self.daten.tickerbaum.saveToFile()
 
         # Hier können die Methoden mit den Signalen der Widgets verbunden werden
 
@@ -54,6 +52,7 @@ class MainWindow(qtw.QWidget):
         self.ui.pushButton_profil_laden.clicked.connect(self.profilLaden)
         self.ui.pushButton_neues_profil.clicked.connect(self.profilErstellen)
         self.ui.pushButton_refresh_waehrung.clicked.connect(self.aktualisiereWaehrung)
+        self.ui.pushButton_ticker_aktualisieren.clicked.connect(lambda: self.bg(self.tickerAktualisieren, (True,)))
 
     # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
     def abfrageName( self ):
@@ -75,14 +74,20 @@ class MainWindow(qtw.QWidget):
     
     def profilLaden( self ):
         name = self.ui.listWidget_profile.currentItem().text()
-        self.spieler.profil_laden( name )
+        self.spieler.profil_laden(name)
         self.aktualisiereTabEinstellungen()
     
     def aktualisiereTabEinstellungen( self, i=2 ):
         if i != 2: return
         self.ui.listWidget_profile.clear()
         self.ui.listWidget_profile.addItems(self.spieler.profile_auflisten())
+        self.ui.spinBox_OrderGebuehr.setValue(self.spieler.OrderGebuehren)
         self.ui.groupBox_profile.setTitle("Profile (zurzeit %s)" % self.spieler.name)
+
+    def tickerAktualisieren( self, threaded=False):
+        self.daten.tickerErneuern()
+        self.daten.tickerbaum.saveToFile()
+        if threaded: cursorZuruecksetzen()
 
     def kaufenclick( self, threaded=False ):
         self.spieler.wertpapierKaufen(int(self.ui.spinBox_anzahlKaufen.value()), self.aktuellerTicker)
@@ -155,9 +160,11 @@ class MainWindow(qtw.QWidget):
 
     def aktualisierenDepotguthaben( self ):
         self.spieler.guthaben = self.ui.spinBox_Depotguthaben.value()
-
+        
     def aktualisiereWaehrung( self ):
         self.spieler.waehrung = self.ui.plainTextEdit_Waehrung.toPlainText()
+        self.ui.label_waehrung_depotguthaben_aendern.setText(self.spieler.waehrung)
+        self.ui.label_waehrung_ordergebuehren.setText(self.spieler.waehrung)
 
 
 def main():

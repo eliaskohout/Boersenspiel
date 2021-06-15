@@ -15,7 +15,7 @@ class SPIELER:
         self.aktienliste = {}
         self.OrderGebuehren = 0
         self.waehrung = "€"
-        if os.path.exists("daten/spielstand_%s.json" % name):
+        if os.path.exists("./data/profile/%s.json" % name):
             self.profil_laden(name)
         else:
             self.profil_sichern()
@@ -44,6 +44,7 @@ class SPIELER:
             'Volumen': anzahl,
             'Preis': preis
         })
+        self.profil_sichern()
         print("%s hat %d Wertpapiere (%s) zum Stückpreis von %d € gekauft." % (self.name, anzahl, wertpapier, preis))
 
     def wertpapierVerkaufen(self, anzahl: int, wertpapier: str):
@@ -63,6 +64,7 @@ class SPIELER:
             'Volumen': -1*anzahl,
             'Preis': preis
         })
+        self.profil_sichern()
         print("%s hat %d Wertpapiere (%s) zum Stückpreis von %d € verkauft." % (self.name, anzahl, wertpapier, preis))
 
     def depotwertBerechnen(self):
@@ -75,26 +77,26 @@ class SPIELER:
         return [e[:-5] for e in os.listdir('./data/profile/')]
 
     def profil_sichern(self):
-        dict_ = {}
-        dict_['aktienliste'] = self.aktienliste
-        dict_['guthaben'] = self.guthaben
-        dict_['kaufhistorie'] = self.kaufHistorie
-        dict_['ordergebueren'] = self.OrderGebuehren
-        dict_['waehrung'] = self.waehrung
+        dict2 = {}
+        dict2['aktienliste'] = self.aktienliste
+        dict2['guthaben'] = self.guthaben
+        dict2['kaufhistorie'] = self.kaufHistorie
+        dict2['ordergebueren'] = self.OrderGebuehren
+        dict2['waehrung'] = self.waehrung
         with open("data/profile/%s.json" % self.name, "w") as outfile:
-            json.dump(dict_, outfile)
+            json.dump(dict2, outfile)
 
     def profil_laden(self, name):
         if not os.path.exists("data/profile/%s.json" % name):
             return
         with open("data/profile/%s.json" % self.name, "r") as infile:
-            dict_ = json.load(infile)
-        self.guthaben = dict_['guthaben']
-        self.aktienliste = dict_['aktienliste']
-        self.kaufHistorie = dict_['kaufhistorie']
-        self.OrderGebuehren = dict_['ordergebueren']
-        self.waehrung = dict_['waehrung']
-        self.name = name
+            dict2 = json.load(infile)
+            self.guthaben = dict2['guthaben']
+            self.aktienliste = dict2['aktienliste']
+            self.kaufHistorie = dict2['kaufhistorie']
+            self.OrderGebuehren = dict2['ordergebueren']
+            self.waehrung = dict2['waehrung']
+            self.name = name
 
     def profil_neu(self, name: str):
         self.profil_sichern()
