@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1332</width>
-    <height>410</height>
+    <width>891</width>
+    <height>539</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -50,7 +50,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <property name="usesScrollButtons">
       <bool>true</bool>
@@ -90,23 +90,29 @@
        <item row="1" column="0">
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
+          <widget class="QLabel" name="label_begruessung">
+           <property name="font">
+            <font>
+             <pointsize>18</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Hallo, Bob!</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+           <property name="margin">
+            <number>12</number>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QGroupBox" name="groupBox_2">
            <property name="title">
             <string>Depotübersicht</string>
            </property>
            <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_depotwert">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>000.00 €</string>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_guthaben">
               <property name="font">
@@ -119,14 +125,31 @@
               </property>
              </widget>
             </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_depotwert">
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>000.00 €</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
          </item>
          <item>
           <widget class="QGroupBox" name="groupBox_3">
            <property name="title">
-            <string/>
+            <string>Historie</string>
            </property>
+           <layout class="QGridLayout" name="gridLayout_12">
+            <item row="0" column="0">
+             <widget class="QListWidget" name="listWidget_historie"/>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
@@ -266,7 +289,7 @@
          <x>10</x>
          <y>10</y>
          <width>331</width>
-         <height>81</height>
+         <height>101</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -288,21 +311,21 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QSpinBox" name="OrderGebuehr">
+           <widget class="QSpinBox" name="spinBox_OrderGebuehr">
             <property name="maximum">
              <number>100</number>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="label_waehrung_ordergeuehren">
             <property name="text">
              <string>            Euro</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_Gebuehr">
+           <widget class="QPushButton" name="pushButton_refresh_Gebuehr">
             <property name="text">
              <string>Refresh</string>
             </property>
@@ -316,7 +339,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>110</y>
+         <y>120</y>
          <width>331</width>
          <height>91</height>
         </rect>
@@ -335,7 +358,7 @@
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QSpinBox" name="SpinBox_Depotguthaben">
+          <widget class="QSpinBox" name="spinBox_Depotguthaben">
            <property name="maximum">
             <number>100000000</number>
            </property>
@@ -352,13 +375,103 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_DepotGuthaben">
+          <widget class="QPushButton" name="pushButton_refresh_DepotGuthaben">
            <property name="text">
             <string>Refresh</string>
            </property>
           </widget>
          </item>
         </layout>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_6">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>10</y>
+         <width>331</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Profil</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_11">
+        <item row="0" column="1" rowspan="2">
+         <widget class="QPushButton" name="pushButton_load">
+          <property name="text">
+           <string>load</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" rowspan="2">
+         <widget class="QPushButton" name="pushButton_save">
+          <property name="text">
+           <string>save</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="pushButton_neues_profil">
+          <property name="text">
+           <string>Neu</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton_profil_loeschen">
+          <property name="text">
+           <string>Löschen</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_7">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>120</y>
+         <width>331</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Währung</string>
+       </property>
+       <widget class="QPlainTextEdit" name="plainTextEdit_Waehrung">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>211</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_refresh_waehrung">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>40</y>
+          <width>80</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Refresh</string>
+        </property>
        </widget>
       </widget>
      </widget>
@@ -379,45 +492,77 @@
           <enum>QTabWidget::South</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="tab_1Tag">
           <attribute name="title">
            <string>1 Tag</string>
           </attribute>
-          <widget class="QGraphicsView" name="TagChart">
-           <property name="geometry">
-            <rect>
-             <x>-5</x>
-             <y>-9</y>
-             <width>791</width>
-             <height>551</height>
-            </rect>
-           </property>
-           <property name="cursor" stdset="0">
-            <cursorShape>ArrowCursor</cursorShape>
-           </property>
-          </widget>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_chart_1Tag">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="tab_1Woche">
           <attribute name="title">
            <string>1 Woche</string>
           </attribute>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_chart_1Woche">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="tab_1Monat">
           <attribute name="title">
            <string>1 Monat</string>
           </attribute>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_chart_1Monat">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="tab_6Monate">
           <attribute name="title">
            <string>6 Monate</string>
           </attribute>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_chart_6Monate">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="tab_1Jahr">
           <attribute name="title">
            <string>1 Jahr</string>
           </attribute>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_chart_1Jahr">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="tab_5Jahre">
           <attribute name="title">
@@ -439,7 +584,7 @@
          <item>
           <widget class="QSplitter" name="splitter_3">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -475,7 +620,7 @@
          <item>
           <widget class="QSplitter" name="splitter_4">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -584,8 +729,8 @@
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>671</x>
-     <y>59</y>
+     <x>654</x>
+     <y>70</y>
     </hint>
     <hint type="destinationlabel">
      <x>836</x>

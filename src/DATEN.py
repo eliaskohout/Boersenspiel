@@ -44,7 +44,6 @@ class DATEN:
         if von == "heute":
             von = date.today()
         return pdr.DataReader(ticker, "yahoo", start=von, end=bis)[key]
-        #return [random.randrange(80000)/100]
 
     def tickerpreisErhaltenInTagen( self, ticker: str, tage: int ):
         von_Datum = date.today() - timedelta(days=tage)

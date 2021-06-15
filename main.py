@@ -10,11 +10,8 @@ from ui.main_window import Ui_Form
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
 from PyQt5.QtGui import QPixmap
-import threading
+import threading, sys
 
-
-def main():
-    pass
 
 class MainWindow(qtw.QWidget):
 
@@ -22,9 +19,14 @@ class MainWindow(qtw.QWidget):
         super().__init__(*args, **kwargs)
 
         self.aktuellerTicker = ""
+        self.waehrung = "€"
 
+        name, nichtCancel = self.abfrageName()
+        if not nichtCancel and name == "":
+            sys.exit()
+        
         self.daten = D.DATEN()
-        self.spieler = S.SPIELER('Bob', self.daten.aktuellenTickerpreisErhalten )
+        self.spieler = S.SPIELER(name, self.daten.aktuellenTickerpreisErhalten )
 
         self.ui = Ui_Form()
         self.ui.setupUi(self)
@@ -45,44 +47,49 @@ class MainWindow(qtw.QWidget):
         self.ui.pushButton_verkaufen.clicked.connect(self.aktualisiereImBesitzLabel)
         self.ui.tabWidget.currentChanged.connect(self.aktualisiereTabPortfolio)
         self.ui.pushButton_preis.clicked.connect(self.aktualisierePreisLabel)
-        self.ui.pushButton_Gebuehr.clicked.connect(self.aktualisierenOrderGebuehren)
-        self.ui.pushButton_DepotGuthaben.clicked.connect(self.aktualisierenDepotguthaben)
+        self.ui.pushButton_refresh_Gebuehr.clicked.connect(self.aktualisierenOrderGebuehren)
+        self.ui.pushButton_refresh_DepotGuthaben.clicked.connect(self.aktualisierenDepotguthaben)
         self.ui.pushButton_save.clicked.connect(self.spieler.safe)
         self.ui.pushButton_load.clicked.connect(self.spieler.load)
-    # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
+        self.ui.pushButton_refresh_waehrung.clicked.connect(self.aktualisiereWaehrung)
 
-    def kaufenclick( self, threaded=True):
+    # Hier die Methoden für Funktionen der Widgets (z.B. Button) einfügen
+    def abfrageName( self ):
+        output = qtw.QInputDialog.getText(self, "Namenswahl", "Dein Name:", qtw.QLineEdit.Normal, "")
+        return output
+
+    def kaufenclick( self, threaded=True ):
         if threaded:
             self.imHintergrundAusfuehren( self.kaufenclick, (False) )
             return
         self.spieler.wertpapierKaufen(int(self.ui.spinBox_anzahlKaufen.value()), self.aktuellerTicker)
         self.aktualisiereImBesitzLabel(threaded=False)
-        curserZuruecksetzen()
+        cursorZuruecksetzen()
 
-    def verkaufenclick( self, threaded=True):
+    def verkaufenclick( self, threaded=True ):
         if threaded:
             self.imHintergrundAusfuehren( self.kaufenclick, (False) )
             return
         self.spieler.wertpapierVerkaufen(int(self.ui.spinBox_anzahlVerkaufen.value()), self.aktuellerTicker)
         self.aktualisiereImBesitzLabel(threaded=False)
-        curserZuruecksetzen()
+        cursorZuruecksetzen()
 
-    def aktualisierePreisLabel( self, threaded=True):
+    def aktualisierePreisLabel( self, threaded=True ):
         if threaded:
             self.imHintergrundAusfuehren( self.aktualisierePreisLabel, (False))
             return
         tickerpreis = self.daten.aktuellenTickerpreisErhalten(self.aktuellerTicker)
         aktiensumme = self.ui.spinBox_anzahlKaufen.value() - self.ui.spinBox_anzahlVerkaufen.value()
         tickerpreis *= aktiensumme
-        self.ui.label_preis.setText("%3.2f €" % tickerpreis)
-        curserZuruecksetzen()
+        self.ui.label_preis.setText("%3.2f %s" % (tickerpreis, self.waehrung))
+        cursorZuruecksetzen()
 
     def aktualisiereImBesitzLabel( self, threaded=True):
         if threaded:
             self.imHintergrundAusfuehren( self.aktualisiereImBesitzLabel, (False))
             return
         self.ui.label_imBesitz.setText("Im Besitz: %d" % self.spieler.aktienAnzahlErhalten(self.aktuellerTicker))
-        curserZuruecksetzen()
+        cursorZuruecksetzen()
 
     def suche( self ):
         self.ui.listWidget_suchergebnis.clear()
@@ -100,43 +107,58 @@ class MainWindow(qtw.QWidget):
         self.konfiguriereAktieninfo(ticker)
 
     def konfiguriereAktieninfo( self, ticker: str ):
-        self.ui.label_preis.setText("   €")
-        self.daten.tickerpreisErhaltenInTagen(ticker, 7).plot().get_figure().savefig("data/charts/chart_%s_eineWoche.jpeg" % ticker)
-        self.ui.label_chart_1Woche.setPixmap(QPixmap("data/charts/chart_%s_eineWoche.jpeg" % ticker))
-        self.daten.tickerpreisErhaltenInTagen(ticker, 30).plot().get_figure().savefig("data/charts/chart_%s_einMonat.jpeg" % ticker)
-        self.ui.label_chart_1Monat.setPixmap(QPixmap("data/charts/chart_%s_eineMonat.jpeg" % ticker))
-        self.daten.tickerpreisErhaltenInTagen(ticker, 180).plot().get_figure().savefig("data/charts/chart_%s_sechsMonate.jpeg" % ticker)
-        self.ui.label_chart_6Monate.setPixmap(QPixmap("data/charts/chart_%s_sechsMonate.jpeg" % ticker))
-        self.daten.tickerpreisErhaltenInTagen(ticker, 365).plot().get_figure().savefig("data/charts/chart_%s_einJahr.jpeg" % ticker)
-        self.ui.label_chart_1Jahr.setPixmap(QPixmap("data/charts/chart_%s_einJahr.jpeg" % ticker))
+        self.ui.label_preis.setText(self.waehrung)
+        self.aktualisiereImBesitzLabel()
+        self.daten.tickerpreisErhaltenInTagen(ticker, 7).plot().get_figure().savefig("data/charts/chart.jpeg")
+        self.ui.label_chart_1Woche.setPixmap(QPixmap("data/charts/chart.jpeg"))
+        self.daten.tickerpreisErhaltenInTagen(ticker, 30).plot().get_figure().savefig("data/charts/chart.jpeg")
+        self.ui.label_chart_1Monat.setPixmap(QPixmap("data/charts/chart.jpeg"))
+        self.daten.tickerpreisErhaltenInTagen(ticker, 180).plot().get_figure().savefig("data/charts/chart.jpeg")
+        self.ui.label_chart_6Monate.setPixmap(QPixmap("data/charts/chart.jpeg"))
+        self.daten.tickerpreisErhaltenInTagen(ticker, 365).plot().get_figure().savefig("data/charts/chart.jpeg")
+        self.ui.label_chart_1Jahr.setPixmap(QPixmap("data/charts/chart.jpeg"))
 
     def aktualisiereTabPortfolio( self , i =0, threaded=True ):
         if i != 0: return
         if threaded:
             self.imHintergrundAusfuehren( self.aktualisiereTabPortfolio, (i, False) )
             return
+        self.ui.label_begruessung.setText("Hallo, %s!" % self.spieler.name)
+
         self.ui.listWidget_gekaufteAktien.clear()
         itemlist = ["%s (%s)" % (self.daten.aktiennameErhalten(e), e) for e in self.spieler.aktienliste]
         self.ui.listWidget_gekaufteAktien.addItems(itemlist)
-        self.ui.label_depotwert.setText("Depotwert: %3.2f €" % self.spieler.depotwertBerechnen())
-        self.ui.label_guthaben.setText( "Guthaben:  %3.2f €" % self.spieler.guthaben)
-        curserZuruecksetzen()
+        self.ui.listWidget_historie.clear()
+        itemlist = ["%sx %s zum Einzelpreis von %3.2f %s" % (e['Volumen'], e['Ticker'], e['Preis'], self.waehrung) for e in self.spieler.kaufHistorie]
+        itemlist.reverse()
+        self.ui.listWidget_historie.addItems(itemlist)
+
+        self.ui.label_depotwert.setText("Depotwert: %3.2f %s" % (self.spieler.depotwertBerechnen(), self.waehrung))
+        self.ui.label_guthaben.setText( "Guthaben:  %3.2f %s" % (self.spieler.guthaben, self.waehrung))
+        cursorZuruecksetzen()
 
     def imHintergrundAusfuehren( self, funktion: 'funktion', arguments: tuple):
-        curserAufBeschaeftigt()
+        cursorAufBeschaeftigt()
         x = threading.Thread(target=funktion, args=arguments)
         x.start()
 
-    def aktualisierenOrderGebuehren(self):
-        self.spieler.OrderGebuehren = self.ui.OrderGebuehr.value()
+    def aktualisierenOrderGebuehren( self ):
+        self.spieler.OrderGebuehren = self.ui.spinBox_OrderGebuehr.value()
 
-    def aktualisierenDepotguthaben(self):
-        self.spieler.guthaben = self.ui.SpinBox_Depotguthaben.value()
+    def aktualisierenDepotguthaben( self ):
+        self.spieler.guthaben = self.ui.spinBox_Depotguthaben.value()
 
-def curserAufBeschaeftigt():
+    def aktualisiereWaehrung( self ):
+        self.waehrung = self.ui.plainTextEdit_Waehrung.toPlainText()
+
+
+def main():
+    pass
+
+def cursorAufBeschaeftigt():
     app.setOverrideCursor(qtc.Qt.BusyCursor)
 
-def curserZuruecksetzen():
+def cursorZuruecksetzen():
     app.restoreOverrideCursor()
 
 if __name__ == "__main__":
