@@ -280,7 +280,7 @@
       <attribute name="title">
        <string>Einstellungen</string>
       </attribute>
-      <widget class="QGroupBox" name="groupBox_4">
+      <widget class="QGroupBox" name="groupBox_ordergebueren_aendern">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -335,13 +335,13 @@
         </item>
        </layout>
       </widget>
-      <widget class="QGroupBox" name="groupBox_5">
+      <widget class="QGroupBox" name="groupBox_depotguthaben_aendern">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>120</y>
+         <x>350</x>
+         <y>10</y>
          <width>331</width>
-         <height>91</height>
+         <height>101</height>
         </rect>
        </property>
        <property name="title">
@@ -350,8 +350,8 @@
        <widget class="QWidget" name="horizontalLayoutWidget">
         <property name="geometry">
          <rect>
-          <x>9</x>
-          <y>19</y>
+          <x>10</x>
+          <y>30</y>
           <width>311</width>
           <height>61</height>
          </rect>
@@ -384,50 +384,46 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QGroupBox" name="groupBox_6">
+      <widget class="QGroupBox" name="groupBox_profile">
        <property name="geometry">
         <rect>
-         <x>350</x>
-         <y>10</y>
+         <x>10</x>
+         <y>120</y>
          <width>331</width>
-         <height>101</height>
+         <height>201</height>
         </rect>
        </property>
        <property name="title">
-        <string>Profil</string>
+        <string>Profile</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
-        <item row="0" column="1" rowspan="2">
-         <widget class="QPushButton" name="pushButton_load">
-          <property name="text">
-           <string>load</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" rowspan="2">
-         <widget class="QPushButton" name="pushButton_save">
-          <property name="text">
-           <string>save</string>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="1">
-         <widget class="QPushButton" name="pushButton_neues_profil">
-          <property name="text">
-           <string>Neu</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
          <widget class="QPushButton" name="pushButton_profil_loeschen">
           <property name="text">
            <string>Löschen</string>
           </property>
          </widget>
         </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="pushButton_neues_profil">
+          <property name="text">
+           <string>Neu</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="3">
+         <widget class="QListWidget" name="listWidget_profile"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton_profil_laden">
+          <property name="text">
+           <string>Laden</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
-      <widget class="QGroupBox" name="groupBox_7">
+      <widget class="QGroupBox" name="groupBox_waehrung">
        <property name="geometry">
         <rect>
          <x>350</x>
