@@ -9,7 +9,6 @@ from ui.main_window import Ui_Form
 
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
-from PyQt5.QtGui import QPixmap
 import threading, sys
 
 
@@ -32,6 +31,8 @@ class MainWindow(qtw.QWidget):
         self.ui.setupUi(self)
         self.ui.tabWidget.setTabVisible(3, False)
         self.aktualisiereTabPortfolio()
+        self.ui.plotWidget.setBackground('w')
+        self.ui.plotWidget.setAntialiasing(True)
 
         #self.daten.tickerErneuern()
         #self.daten.tickerbaum.saveToFile()
@@ -39,15 +40,13 @@ class MainWindow(qtw.QWidget):
         # Hier können die Methoden mit den Signalen der Widgets verbunden werden
 
         self.ui.pushButton_aktiensuche.clicked.connect(self.suche)
-        self.ui.listWidget_suchergebnis.itemDoubleClicked.connect(lambda listitem: self.bg(self.launchAktieninfo, (listitem, True)))
-        self.ui.listWidget_gekaufteAktien.itemDoubleClicked.connect(lambda listitem: self.bg(self.launchAktieninfo, (listitem, True)))
-        self.ui.pushButton_kaufen.clicked.connect(lambda: self.bg(self.kaufenclick, (True)))
-        self.ui.pushButton_kaufen.clicked.connect(lambda: self.bg(self.aktualisiereImBesitzLabel, (True)))
-        self.ui.pushButton_verkaufen.clicked.connect(lambda: self.bg(self.verkaufenclick, (True)))
-        self.ui.pushButton_verkaufen.clicked.connect(lambda: self.bg(self.aktualisiereImBesitzLabel, (True)))
-        self.ui.tabWidget.currentChanged.connect(self.aktualisiereTabPortfolio)
-        self.ui.pushButton_preis.clicked.connect(lambda: self.bg(self.aktualisierePreisLabel, (True)))
-        self.ui.pushButton_refresh_Gebuehr.clicked.connect(lambda x: self.bg(self.aktualisierenOrderGebuehren, (x, True)))
+        self.ui.listWidget_suchergebnis.itemDoubleClicked.connect(lambda listitem: self.bg(self.launchAktieninfo, (listitem, True,)))
+        self.ui.listWidget_gekaufteAktien.itemDoubleClicked.connect(lambda listitem: self.bg(self.launchAktieninfo, (listitem, True,)))
+        self.ui.pushButton_kaufen.clicked.connect(lambda: self.bg(self.kaufenclick, (True,)))
+        self.ui.pushButton_verkaufen.clicked.connect(lambda: self.bg(self.verkaufenclick, (True,)))
+        self.ui.tabWidget.currentChanged.connect(lambda x: self.bg(self.aktualisiereTabPortfolio, (x, True,)))
+        self.ui.pushButton_preis.clicked.connect(lambda: self.bg(self.aktualisierePreisLabel, (True,)))
+        self.ui.pushButton_refresh_Gebuehr.clicked.connect(self.aktualisierenOrderGebuehren)
         self.ui.pushButton_refresh_DepotGuthaben.clicked.connect(self.aktualisierenDepotguthaben)
         self.ui.pushButton_save.clicked.connect(self.spieler.safe)
         self.ui.pushButton_load.clicked.connect(self.spieler.load)
@@ -98,18 +97,13 @@ class MainWindow(qtw.QWidget):
     def konfiguriereAktieninfo( self, ticker: str ):
         self.ui.label_preis.setText(self.waehrung)
         self.aktualisiereImBesitzLabel(threaded=False)
-        self.daten.tickerpreisErhaltenInTagen(ticker, 7).plot().get_figure().savefig("data/charts/chart.jpeg")
-        self.ui.label_chart_1Woche.setPixmap(QPixmap("data/charts/chart.jpeg"))
-        self.daten.tickerpreisErhaltenInTagen(ticker, 30).plot().get_figure().savefig("data/charts/chart.jpeg")
-        self.ui.label_chart_1Monat.setPixmap(QPixmap("data/charts/chart.jpeg"))
-        self.daten.tickerpreisErhaltenInTagen(ticker, 180).plot().get_figure().savefig("data/charts/chart.jpeg")
-        self.ui.label_chart_6Monate.setPixmap(QPixmap("data/charts/chart.jpeg"))
-        self.daten.tickerpreisErhaltenInTagen(ticker, 365).plot().get_figure().savefig("data/charts/chart.jpeg")
-        self.ui.label_chart_1Jahr.setPixmap(QPixmap("data/charts/chart.jpeg"))
-
+        self.ui.plotWidget.plot(self.daten.tickerpreisErhalten(ticker), pen='b', clear=True)
+        #self.ui.plotWidget.plot(self.daten.tickerpreisErhalten(ticker, key='Volume'), pen='g')
 
     def aktualisiereTabPortfolio( self , i =0, threaded=False ):
-        if i != 0: return
+        if i != 0:
+            if threaded: cursorZuruecksetzen()
+            return
         self.ui.label_begruessung.setText("Hallo, %s!" % self.spieler.name)
 
         self.ui.listWidget_gekaufteAktien.clear()

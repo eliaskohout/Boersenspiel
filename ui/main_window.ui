@@ -486,96 +486,6 @@
        <string>Aktieninfo</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_5">
-       <item row="0" column="0">
-        <widget class="QTabWidget" name="tabWidget_diagramm">
-         <property name="tabPosition">
-          <enum>QTabWidget::South</enum>
-         </property>
-         <property name="currentIndex">
-          <number>3</number>
-         </property>
-         <widget class="QWidget" name="tab_1Tag">
-          <attribute name="title">
-           <string>1 Tag</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_7">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_chart_1Tag">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="tab_1Woche">
-          <attribute name="title">
-           <string>1 Woche</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_chart_1Woche">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="tab_1Monat">
-          <attribute name="title">
-           <string>1 Monat</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_8">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_chart_1Monat">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="tab_6Monate">
-          <attribute name="title">
-           <string>6 Monate</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_9">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_chart_6Monate">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="tab_1Jahr">
-          <attribute name="title">
-           <string>1 Jahr</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_10">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_chart_1Jahr">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="tab_5Jahre">
-          <attribute name="title">
-           <string>5 Jahre</string>
-          </attribute>
-         </widget>
-         <widget class="QWidget" name="tab_Max">
-          <attribute name="title">
-           <string>Max</string>
-          </attribute>
-         </widget>
-        </widget>
-       </item>
        <item row="0" column="1">
         <layout class="QVBoxLayout" name="verticalLayout">
          <property name="sizeConstraint">
@@ -714,12 +624,30 @@
          </item>
         </layout>
        </item>
+       <item row="0" column="0">
+        <widget class="PlotWidget" name="plotWidget" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QWidget</extends>
+   <header>pyqtgraph</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
